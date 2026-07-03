@@ -1,5 +1,5 @@
 # NmapScanner
-A python based network scanning project that runs Nmap scans, parses the xml output, and stores scan results in a local SQLite database. The project is designed to be automated using Windows Tasl Schedular
+A Python-based network scanning project that runs Nmap scans, parses the XML output, and stores the scan results in a local SQLite database. The project is designed to be automated using Windows Task Scheduler.
 
 ## Files
 .env: Stores the scan target. Example: SCAN_TARGET=127.0.0.1
@@ -17,112 +17,81 @@ python-dotenv: Install this Python package so the project can read the .env file
 
 ## Install Python Packages
 Open Command Prompt inside the project folder and run:
-```
+```bash
 pip install python-dotenv
 ```
 
 ## Set Up The .env File
 Create a file called .env in the same folder as the Python files.
-
 Add this line:
-
+```env
+SCAN_TARGET=127.0.0.1
 ```
-SCAN_TARGET="Target IP"
-```
-
 Use 127.0.0.1 to scan your own computer.
 Only scan systems you own or have permission to test.
 
 ## Run The Scanner Manually
 Open Command Prompt in the project folder and run:
-
-```
+```bash
 python scanner.py
 ```
 The program should check Nmap, run the scan, create the database, and save the results.
 
-## Set up run_scan.bat
+## Set Up run_scan.bat
 Create a file called run_scan.bat in the project folder.
 Use this if your virtual environment is called .venv and is inside the project folder:
-
-'''
+```bat
 @echo off
 cd /d "%~dp0"
 "%~dp0.venv\Scripts\python.exe" "%~dp0scanner.py"
 pause
-'''
-
+```
 The pause line keeps the window open so you can see any errors.
 After you confirm it works, you can remove pause:
-
-'''
+```bat
 @echo off
 cd /d "%~dp0"
 "%~dp0.venv\Scripts\python.exe" "%~dp0scanner.py"
-'''
+```
 If you are not using a virtual environment, use the full path to your Python executable instead:
-
-'''
+```bat
 @echo off
 cd /d "%~dp0"
 "C:\Users\YOUR_USERNAME\AppData\Local\Programs\Python\Python313\python.exe" "%~dp0scanner.py"
 pause
-'''
-
+```
 Replace YOUR_USERNAME and Python313 with the correct values for your computer.
 Save the file as ANSI or UTF-8 without BOM.
 This avoids the error where Windows says @echo is not recognised.
 
 ## Test The Batch File
-
 Double-click run_scan.bat.
-
 The scanner should run and save results to scans.db.
-
 You can also test it from Command Prompt:
-
 ```bat
 cmd.exe /c run_scan.bat
 ```
 
 ## Set Up Windows Task Scheduler
-
 Open Task Scheduler.
-
 Click Create Basic Task.
-
 Name it AutoNmap Scan.
-
 Choose how often you want it to run, such as Daily.
-
 Choose the time you want the scan to start.
-
 Select Start a program.
-
 For Program/script, choose your run_scan.bat file.
-
 Finish the task setup.
 
 ## Check The Scheduled Task
-
 Open Task Scheduler.
-
 Go to Task Scheduler Library.
-
 Find AutoNmap Scan.
-
 Right-click it and choose Run.
-
 Check the Last Run Result after it finishes.
 
 ## Important Notes
-
 The Python files do not control the schedule.
-
 Windows Task Scheduler controls when the scan runs.
-
 The Python program only runs once each time it is started.
-
 Do not share scans.db publicly if it contains real scan results.
-
 Do not scan public IP addresses, company systems, or other devices without permission.
