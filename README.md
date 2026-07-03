@@ -45,24 +45,29 @@ The program should check Nmap, run the scan, create the database, and save the r
 Create a file called run_scan.bat in the project folder.
 Use this if your virtual environment is called .venv and is inside the project folder:
 
+"""
 @echo off
 cd /d "%~dp0"
 "%~dp0.venv\Scripts\python.exe" "%~dp0scanner.py"
 pause
+"""
 
 The pause line keeps the window open so you can see any errors.
 After you confirm it works, you can remove pause:
 
+"""
 @echo off
 cd /d "%~dp0"
 "%~dp0.venv\Scripts\python.exe" "%~dp0scanner.py"
-
+"""
 If you are not using a virtual environment, use the full path to your Python executable instead:
 
+"""
 @echo off
 cd /d "%~dp0"
 "C:\Users\YOUR_USERNAME\AppData\Local\Programs\Python\Python313\python.exe" "%~dp0scanner.py"
 pause
+"""
 
 Replace YOUR_USERNAME and Python313 with the correct values for your computer.
 
