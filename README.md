@@ -41,23 +41,30 @@ python scanner.py
 ```
 The program should check Nmap, run the scan, create the database, and save the results.
 
-## Set Up The Batch File
+## Set up run_scan.bat
 Create a file called run_scan.bat in the project folder.
-Add this:
+Use this if your virtual environment is called .venv and is inside the project folder:
 
-```bat
 @echo off
 cd /d "%~dp0"
-python scanner.py
-```
+"%~dp0.venv\Scripts\python.exe" "%~dp0scanner.py"
+pause
 
-If you are using a virtual environment, use this instead:
+The pause line keeps the window open so you can see any errors.
+After you confirm it works, you can remove pause:
 
-```bat
 @echo off
 cd /d "%~dp0"
-.venv\Scripts\python.exe scanner.py
-```
+"%~dp0.venv\Scripts\python.exe" "%~dp0scanner.py"
+
+If you are not using a virtual environment, use the full path to your Python executable instead:
+
+@echo off
+cd /d "%~dp0"
+"C:\Users\YOUR_USERNAME\AppData\Local\Programs\Python\Python313\python.exe" "%~dp0scanner.py"
+pause
+
+Replace YOUR_USERNAME and Python313 with the correct values for your computer.
 
 Save the file as ANSI or UTF-8 without BOM.
 
