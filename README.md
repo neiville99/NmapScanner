@@ -95,3 +95,10 @@ Windows Task Scheduler controls when the scan runs.
 The Python program only runs once each time it is started.
 Do not share scans.db publicly if it contains real scan results.
 Do not scan public IP addresses, company systems, or other devices without permission.
+
+## Usage
+
+```bash
+python3 scanner.py
+```
+
